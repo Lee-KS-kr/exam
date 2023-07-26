@@ -9,5 +9,7 @@ public interface BoardService {
 
 	int insertBoard(Board b);
 
+	ArrayList<Board> selectAll();
+
 
 }

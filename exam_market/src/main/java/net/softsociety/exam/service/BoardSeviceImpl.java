@@ -24,5 +24,11 @@ public class BoardSeviceImpl implements BoardService {
 		return n;
 	}
 
+	@Override
+	public ArrayList<Board> selectAll() {
+		ArrayList<Board> list = dao.selectAll();
+		return list;
+	}
+
 
 }

@@ -16,4 +16,6 @@ public interface BoardDAO {
 
 	int insertBoard(Board b);
 
+	ArrayList<Board> selectAll();
+
 }
