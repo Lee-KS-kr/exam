@@ -34,7 +34,7 @@
     from
         market_board
     where
-         soldout = 'N'
+        soldout = 'N'
     order by
         boardnum desc
 </select>
