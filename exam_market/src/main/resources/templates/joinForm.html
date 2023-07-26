@@ -6,15 +6,29 @@
 
 <script>
 function check() {
-	let memberid = document.getElementById('memberid').value;
-	let memberpw = document.getElementById('memberpw').value;
-	let membername = document.getElementById('membername').value;
-	let phone = document.getElementById('phone').value;
+	let memberid = document.getElementById('memberid');
+	let memberpw = document.getElementById('memberpw');
+	let membername = document.getElementById('membername');
+	let phone = document.getElementById('phone');
 	
-	if(memberid.length < 3 || memberid.length > 10)
-		alert('id는 3~10자로 입력하세요.');
-	return false;
-	
+	if(memberid.value.length < 3 || memberid.value.length > 10){
+		alert("id는 3~10자로 입력하세요.");
+		return false;
+	}	
+
+	if(memberpw.value.length < 3 || memberpw.value.length > 10){
+		alert("pw는 3~10자로 입력하세요.");
+		return false;
+	}	
+	if(membername.value == ''){
+		alert("이름을 입력하세요.");
+		return false;
+	}
+	if(phone.value == ''){
+		alert("전화번호를 입력하세요.");
+		return false;
+	}
+	return true;
 }
 </script>
 
@@ -31,23 +45,23 @@ function check() {
 <br>
 
 	<div class="form">
-    <form action="join" method="post" class="form2" >
+    <form th:action="@{/member/join}" method="post" class="form2" onsubmit="return check()" >
         <table>
             <tr>
                 <th>ID</th>
-                <td><input type="text" name="Memberid" id="memberid" placeholder="아이디를 입력해주세요"></td>
+                <td><input type="text" name="memberid" id="memberid" placeholder="아이디를 입력해주세요"></td>
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="password" name="Memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"><br></td>
+                <td><input type="password" name="memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"><br></td>
             </tr>
             <tr>
                 <th>이름</th>
-                <td><input type="text" name="Membername" placeholder="전화번호를 입력해주세요"></td>
+                <td><input type="text" name="membername" id="membername" placeholder="전화번호를 입력해주세요"></td>
             </tr>
             <tr>
                 <th>전화번호</th>
-                <td><input type="text" name="Phone" placeholder="전화번호를 입력해주세요"></td>
+                <td><input type="text" name="phone" id="phone" placeholder="전화번호를 입력해주세요"></td>
             </tr>
         </table>
         <div class="bt">
