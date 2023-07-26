@@ -27,6 +27,7 @@ public class WebSecurityConfig {
         .antMatchers(
         		"/",
         		"/member/join",
+        		"/board/list",
                 "/image/**",
                 "/css/**",
                 "/js/**").permitAll()
