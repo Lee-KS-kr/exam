@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>판매 정보</title>
+<script>
+	function deleteBoard(num){
+		let result = confirm("삭제하시겠습니까?");
+		if(result == true){
+			 location.href="delete?boardnum="+num;
+		}
+	}
+	
+	function validation(){
+		let replytext = document.getElementById("replytext").value;
+		if(replytext.length < 3){
+			alert("댓글은 3글자 이상부터 작성 가능합니다😥");
+			return false;
+		}
+		return true;
+	}
+	
+</script>
+</head>
+<body>
+	<h1>[판매 정보]</h1>
+	
+	<main class="main">
+	
+		<div th:if="${board != null}" class="list">
+			<table>
+				<tr>
+		            <th class="texta">작성자</th>
+					<td th:text="${b.memberid}"></td>
+				</tr>
+				<tr>
+		            <th class="texta">작성일</th>
+					<td th:text="${b.inputdate}"></td>
+		        </tr>
+				<tr>
+		            <th class="texta">제목</th>
+					<td th:text="${b.title}"></td>
+				</tr>
+				<tr>
+					<th class="texta">내용</th>
+					<td id="contents">
+						<pre th:text="${b.contents}"></pre>
+					</td>				
+				</tr>
+				<tr>
+					<td colspan="2" class="bottom-container">
+							<span th:if="${#authentication.name} == ${b.memberid}">
+								<a th:href="|javascript:deleteBoard(boardnum=${b.boardnum})|" class="bottom">
+									<button class="bottom">삭제</button>
+							   </a>				   
+							</span>
+							<span th:if="${#authentication.name} != ${b.memberid}">
+								<a th:href="" class="bottom">
+									<button class="bottom">구매하기</button>
+							   </a>				   
+							</span>
+							<a th:href="@{/board/list}">
+								<input type="button" value="목록으로 돌아가기"><br><br>
+							</a>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="bottom-container">
+				<!-- 리플 작성 폼 -->
+				<!-- 작성한 글 내용, 글번호를 서버로 전송하여 DB에 저장 -->
+				<form th:action="@{/board/writeReply}" method="post" onsubmit="return validation()">
+				<input type="text" name="replytext" id="replytext">
+				<input type="hidden" name="boardnum" th:value="${b.boardnum}">&nbsp;
+				<input type="submit" value="확인"><br><br>
+				</form>
+				<!-- 리플 목록 -->
+				<br>
+				<table class="replylist" th:if="${reply != null}">
+					<tr th:each="reply:${reply}">
+						<th th:text="${reply.memberid}"></th>
+						<td th:text="${reply.replytext}"></td>
+						<td class="list_right" th:text="${reply.inputdate}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
