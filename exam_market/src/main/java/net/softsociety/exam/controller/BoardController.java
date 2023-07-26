@@ -35,6 +35,6 @@ public class BoardController {
 	
 	@GetMapping("write")
 	public String wirte() {
-		return "redirect:/";
+		return "boardView/boardinsert";
 	}
 }
