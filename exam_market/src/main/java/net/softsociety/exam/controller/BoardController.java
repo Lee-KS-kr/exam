@@ -37,4 +37,11 @@ public class BoardController {
 	public String wirte() {
 		return "boardView/boardinsert";
 	}
+	
+	@PostMapping("boardinsert")
+	public String boardinsert(Board b, @AuthenticationPrincipal UserDetails user) {
+		b.setMemberid(user.getUsername());
+		service.insertBoard(b);
+		return "redirect:/board/list";
+	}
 }

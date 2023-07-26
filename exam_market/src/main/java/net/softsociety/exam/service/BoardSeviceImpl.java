@@ -15,6 +15,14 @@ import net.softsociety.exam.domain.Reply;
 @Transactional
 @Service
 public class BoardSeviceImpl implements BoardService {
+	@Autowired
+	BoardDAO dao;
+
+	@Override
+	public int insertBoard(Board b) {
+		int n = dao.insertBoard(b);
+		return n;
+	}
 
 
 }
