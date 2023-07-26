@@ -18,6 +18,10 @@ import net.softsociety.exam.service.MemberService;
 @RequestMapping("member")
 @Controller
 public class MemberController {
+	@GetMapping("join")
+	public String join() {
+		return "joinForm";
+	}
 	
 	@GetMapping("login")
 	public String login() {
