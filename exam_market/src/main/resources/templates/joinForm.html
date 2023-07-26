@@ -16,15 +16,15 @@ function check() {
 	return false;
 	}
 
-	else if(memberpw.length < 3 || memberpw.length > 10){
-		alert('id는 3~10자로 입력하세요.');
+	if(memberpw.length < 3 || memberpw.length > 10){
+		alert('pw는 3~10자로 입력하세요.');
 	return false;
 	}
-	else if(memnername == ''){
+	if(memnername == ''){
 		alert('이름을 입력하세요.');
 	return false;
 	}
-	else if(phone == ''){
+	if(phone == ''){
 		alert('전화번호를 입력하세요.');
 	return false;
 	}
