@@ -25,4 +25,19 @@
 		)
 </insert>
 
+<!-- 판매글 목록 조회 -->
+<select id="selectAll" parameterType="" resultType="">
+    select
+        boardnum
+        , title
+        , memberid
+    from
+        market_board
+    where
+        soldout = 'N'
+    order by
+        boardnum desc
+</select>
+
+
 </mapper>
