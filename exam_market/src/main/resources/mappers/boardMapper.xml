@@ -31,14 +31,11 @@
         boardnum
         , title
         , memberid
-    from 
+    from
         market_board
-    <where>
-        <if test="soldout != null and soldout == 'N'">
-            AND soldout = 'N'
-        </if>
-    </where>
-    order by 
+    where
+         soldout = 'N'
+    order by
         boardnum desc
 </select>
 
