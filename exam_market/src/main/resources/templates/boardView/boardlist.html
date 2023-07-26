@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/boardlist.css}"></link>
+<title>게 시 판</title>
+<script>
+$(document).ready(function(){
+	init();
+});
+
+function init(){
+	//서버로 요청을 보내서 글 목록 받아와서 출력
+	$.ajax({
+		url: "list",
+		type: "get",
+		dataType: "json",
+		success: function(list){
+			let str = '<table><tr><th>번호</th><th>제목</th><th>작성자</th></tr>';
+			$(list).each(function(i,item){
+				str += '<tr>';
+				str += '<td>' + item.boardnum + '</td>';
+				str += '<td><a th:href="@{/board/read(boardnum=${b.boardnum})}">' + item.title + '</a></td>';
+				str += '<td>' + item.memberid + '</td>';
+				str += '</tr>';
+			});
+			str += '</table>';
+			$('#listDiv').html(str);
+		}
+	});
+}
+</script>
+<style>
+.text-left{
+    float: left;
+}
+
+.text-right{
+    float: right;
+}
+</style>
+</head>
+<body>
+	<h1><a th:href="@{/board/list}">[ 판매 정보 게시판 ]</a></h1>
+	
+	<div class="container_flex">
+ 		<p sec:authorize="isAuthenticated()" class="text-left"><a th:href="@{/board/write}">판매글 등록</a></p>
+   	</div>
+
+	<!-- 목록 출력 영역 -->
+	<div id="divlist">
+					
+	</div>
+     
+	
+</body>
+</html>
