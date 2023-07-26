@@ -16,18 +16,19 @@ function check() {
 	return false;
 	}
 
-	if(memberpw.length < 3 || memberpw.length > 10){
+	else if(memberpw.length < 3 || memberpw.length > 10){
 		alert('pw는 3~10자로 입력하세요.');
 	return false;
 	}
-	if(memnername == ''){
+	else if(membername == ''){
 		alert('이름을 입력하세요.');
 	return false;
 	}
-	if(phone == ''){
+	else if(phone == ''){
 		alert('전화번호를 입력하세요.');
 	return false;
 	}
+	return true;
 }
 </script>
 
@@ -39,12 +40,12 @@ function check() {
 <br>
 <br>
 
-<h1 class="h1">[ 회원가입 ]</h1>
+<h1 class="h1">회원가입</h1>
 
 <br>
 
 	<div class="form">
-    <form th:action="@{/member/join}" method="post" class="form2" >
+    <form th:action="@{/member/join}" method="post" class="form2" onsubmit="return check();" >
         <table>
             <tr>
                 <th>ID</th>
