@@ -19,26 +19,38 @@ th{
 <body>
 	<h1>[ 로그인 ]</h1>
 	
-		<form th:action="@{/member/login}" method="post">
-			<table>
-			<tr>
-				<th>ID </th>
-				<td>
-					<input type="text" name="memberid" id="memberid" required>
-				</td>
-			</tr>
-			<tr>
-				<th>Password </th>
-				<td>
-					<input type="password" name="memberpw" id="memberpw" required>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="Login">
-				</td>
-			</tr>
-			</table>
-		</form>
+	<form th:action="@{/member/login}" method="post">
+		<table>
+		<tr>
+			<th>ID </th>
+			<td>
+				<input type="text" name="memberid" id="memberid" required>
+			</td>
+		</tr>
+		<tr>
+			<th>Password </th>
+			<td>
+				<input type="password" name="memberpw" id="memberpw" required>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Login">
+			</td>
+		</tr>
+		</table>
+	</form>
+		
+	<!-- 에러 메세지 -->
+	<div th:if="${param.error}" style="color:red;">
+		<p style="text-align: center;"><br>ID 또는 비밀번호가 틀렸습니다.</p>
+	</div>
+
+	<!-- 들어오자마자 실행하는 스크립트 -->
+	<div th:if="${param.error}">
+		<script>
+			alert('에러')
+		</script>
+	</div>
 </body>
 </html>
