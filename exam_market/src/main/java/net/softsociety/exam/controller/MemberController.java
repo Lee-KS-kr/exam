@@ -2,6 +2,7 @@ package net.softsociety.exam.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ import net.softsociety.exam.service.MemberService;
 @RequestMapping("member")
 @Controller
 public class MemberController {
+	@Autowired
+	MemberService service;
+	
 	@GetMapping("join")
 	public String join() {
 		return "joinForm";
@@ -26,6 +30,12 @@ public class MemberController {
 	@GetMapping("login")
 	public String login() {
 		return "loginForm";
+	}
+	
+	@PostMapping("join")
+	public String join(Member mem) {
+		service.insertMember(mem);
+		return "redirect:/";
 	}
 
 }
