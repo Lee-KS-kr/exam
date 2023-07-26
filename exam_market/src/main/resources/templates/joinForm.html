@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>join</title>
+
+<script>
+function check() {
+	let memberid = document.getElementById('memberid').value;
+	let memberpw = document.getElementById('memberpw').value;
+	let membername = document.getElementById('membername').value;
+	let phone = document.getElementById('phone').value;
+	
+	if(memberid.length < 3 || memberid.length > 10)
+		alert('id는 3~10자로 입력하세요.');
+	return false;
+	
+}
+</script>
+
+
+</head>
+<body>
+
+<div class="div2">
+<br>
+<br>
+
+<h1 class="h1">회원가입</h1>
+
+<br>
+
+	<div class="form">
+    <form action="join" method="post" class="form2" >
+        <table>
+            <tr>
+                <th>ID</th>
+                <td><input type="text" name="Memberid" id="memberid" placeholder="아이디를 입력해주세요"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="Memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"><br></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td><input type="text" name="Membername" placeholder="전화번호를 입력해주세요"></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><input type="text" name="Phone" placeholder="전화번호를 입력해주세요"></td>
+            </tr>
+        </table>
+        <div class="bt">
+                 <input type="submit" value="가입" class="bt1">
+                 <input type="reset" value="다시쓰기" class="bt1">
+
+        </div>
+        </form>
+	</div>        
+</div>
+</body>
+</html>
