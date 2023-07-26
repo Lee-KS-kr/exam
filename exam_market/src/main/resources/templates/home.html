@@ -10,9 +10,15 @@
 <body>
 	<h1>[ 중고 거래 사이트 ]</h1>
 	<ul>
-		<li><a th:href="@{/member/join}">회원가입</a></li>
-		<li><a th:href="@{/member/login}">로그인</a></li>
-		<!-- 이곳에 추가하여 작성하세요. -->
+		<div sec:authorize="!isAuthenticated()">
+			<li><a th:href="@{/member/join}">회원가입</a></li>
+			<li><a th:href="@{/member/login}">로그인</a></li>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<li><a th:href="@{/member/logout}">로그아웃</a></li>	
+		</div>
+		<li><a th:href="@{/}">판매정보 게시판</a></li>
+		<li><a th:href="@{/}">판매상품 검색</a></li>
 	</ul>
 
 </body>
