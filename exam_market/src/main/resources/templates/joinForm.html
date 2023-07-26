@@ -11,10 +11,23 @@ function check() {
 	let membername = document.getElementById('membername').value;
 	let phone = document.getElementById('phone').value;
 	
-	if(memberid.length < 3 || memberid.length > 10)
+	if(memberid.length < 3 || memberid.length > 10){
 		alert('id는 3~10자로 입력하세요.');
 	return false;
-	
+	}
+
+	else if(memberpw.length < 3 || memberpw.length > 10){
+		alert('id는 3~10자로 입력하세요.');
+	return false;
+	}
+	else if(memnername == ''){
+		alert('이름을 입력하세요.');
+	return false;
+	}
+	else if(phone == ''){
+		alert('전화번호를 입력하세요.');
+	return false;
+	}
 }
 </script>
 
@@ -31,23 +44,23 @@ function check() {
 <br>
 
 	<div class="form">
-    <form action="join" method="post" class="form2" >
+    <form th:action="@{/member/join}" method="post" class="form2" >
         <table>
             <tr>
                 <th>ID</th>
-                <td><input type="text" name="Memberid" id="memberid" placeholder="아이디를 입력해주세요"></td>
+                <td><input type="text" name="memberid" id="memberid" placeholder="아이디를 입력해주세요"></td>
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="password" name="Memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"><br></td>
+                <td><input type="password" name="memberpw" id="emberpw" placeholder="비밀번호를 입력해주세요"><br></td>
             </tr>
             <tr>
                 <th>이름</th>
-                <td><input type="text" name="Membername" placeholder="전화번호를 입력해주세요"></td>
+                <td><input type="text" name="membername" placeholder="전화번호를 입력해주세요"></td>
             </tr>
             <tr>
                 <th>전화번호</th>
-                <td><input type="text" name="Phone" placeholder="전화번호를 입력해주세요"></td>
+                <td><input type="text" name="phone" placeholder="전화번호를 입력해주세요"></td>
             </tr>
         </table>
         <div class="bt">
