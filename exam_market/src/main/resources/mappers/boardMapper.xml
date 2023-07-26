@@ -6,9 +6,23 @@
 
 <!--판매글 저장 -->
 <insert id="insertBoard" parameterType="Board">
-
+	insert
+	into
+		market_board (
+			boardnum
+			, memberid
+			, title
+			, contents
+			, category
+		)
+	values (
+			market_board_seq.nextval
+			, #{boardnum}
+			, #{memberid}
+			, #{title}
+			, #{contents}
+			, #{category}
+		)
 </insert>
-
-
 
 </mapper>
