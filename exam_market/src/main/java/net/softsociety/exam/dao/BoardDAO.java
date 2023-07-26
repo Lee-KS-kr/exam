@@ -14,4 +14,8 @@ import net.softsociety.exam.domain.Reply;
 @Mapper
 public interface BoardDAO {
 
+	int insertBoard(Board b);
+
+	ArrayList<Board> selectAll();
+
 }
