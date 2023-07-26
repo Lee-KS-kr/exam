@@ -25,6 +25,16 @@ import net.softsociety.exam.service.BoardService;
 @RequestMapping("board")
 @Controller
 public class BoardController {
+	@Autowired
+	BoardService service;
 	
-
+	@GetMapping("list")
+	public String list() {
+		return "boardView/boardlist";
+	}
+	
+	@GetMapping("write")
+	public String wirte() {
+		return "redirect:/";
+	}
 }
