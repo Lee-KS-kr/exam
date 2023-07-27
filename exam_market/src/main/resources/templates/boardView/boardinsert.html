@@ -3,6 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Board insert</title>
+<script>
+	function check() {
+		let title = document.getElementById('title');
+		let contents = document.getElementById('contents');
+		
+		if(title.value < 5) {
+			alert("제목을 입력하세요.");
+			return false;
+		}
+		if(contents.value < 5) {
+			alert("내용을 입력하세요.");
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 </head>
 <body>
 	<h1>[ 판매글 등록 ]</h1>
@@ -12,8 +29,8 @@
 	        <option value="camera">camera</option>
 	        <option value="car">car</option>
 	    </select><br>
-	    제목<input type="text" name="title"><br>
-	    내용<textarea cols="50" rows="5" name="contents">text</textarea><br>
+	    제목<input type="text" name="title" id="title"><br>
+	    내용<textarea cols="50" rows="5" name="contents" id="contents"></textarea><br>
 
         <input type="submit" value="저장" class="bt1">
 	    
