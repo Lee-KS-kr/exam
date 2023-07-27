@@ -18,4 +18,6 @@ public interface BoardDAO {
 
 	ArrayList<Board> selectAll();
 
+	Board read(int boardnum);
+
 }
