@@ -21,13 +21,14 @@
 			type:'POST',
 			dataType: 'json',
 			data: {item: keyword, category: category},
-			success: function(ilst) {
+			success: function(list) {
 				let str = '<table>';
 				$(list).each(function (i, item){
 					str += '<tr>';
-					str += '<td>' + item.boardnum + '<td>';
-					str += '<td>' + item.category + '<td>';
-					str += '<td>' + item.title + '<td>';
+					str += '<td>' + item.boardnum + '</td>';
+					str += '<td>' + item.category + '</td>';
+					//글 제목을 누르면 해당하는 글 내용을 보여주기
+					str += '<td><a href="/market/board/read?boardnum=' + item.boardnum + '">' + item.title + '</a></td>';
 					str += '</tr>';					
 				});
 				str += '</table>';
