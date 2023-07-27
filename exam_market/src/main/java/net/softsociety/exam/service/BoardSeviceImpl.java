@@ -42,5 +42,24 @@ public class BoardSeviceImpl implements BoardService {
 		return n;
 	}
 
+	@Override
+	public ArrayList<Board> selectProduct(String category, String item) {
+		HashMap<String, String> map = new HashMap<>();
+		if(category.equals("all"))
+			category = null;
+		
+		map.put("category", category);
+		map.put("item", item);
+		
+		ArrayList<Board> list = dao.selectProduct(map);
+		return list;
+	}
+
+	@Override
+	public int buyProduct(Board b) {
+		int n = dao.buyProduct(b);
+		return n;
+	}
+
 
 }
