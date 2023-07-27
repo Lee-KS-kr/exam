@@ -15,7 +15,6 @@
 		var keyword = $("#keyword").val();
 		var category = $("select[name='category']").val();
 		
-	function updateSearchResults(data) {
 		$.ajax({
 			url: 'search',
 			type:'POST',
@@ -35,7 +34,6 @@
 			}
 		});
 	}
-	
 </script>
 </head>
 <body>
