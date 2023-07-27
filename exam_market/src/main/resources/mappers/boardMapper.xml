@@ -4,12 +4,14 @@
 
 <mapper namespace="net.softsociety.exam.dao.BoardDAO">
 
+
 <!-- 4) 판매 정보 게시판 목록 -->
 <select id="selectAll" resultType="Board">
     select
         boardnum
         , title
         , memberid
+        , category
     from
         market_board
     where
