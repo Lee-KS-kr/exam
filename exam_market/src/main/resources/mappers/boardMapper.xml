@@ -38,21 +38,33 @@
         boardnum desc
 </select>
 
-<!-- <select id="read" resultType="Board">
+<!-- 판매글 읽기 -->
+<select id="read" resultType="Board">
 		select
-			boardnum
 			, memberid
 			, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate 
-			, hits
+			boardnum
 			, title
 			, contents
-			, originalfile
-			, savedfile
 		from
 			market_board
 		where 
 			boardnum = #{boardnum}
-	</select> -->
+	</select>
+	
+<!-- 판매상품 검색 -->
+<select id="selectProduct" resultType="Board">
+    select
+        boardnum
+        , category
+        , title
+    from
+        market_board
+    where
+        soldout = 'N'
+    order by
+        boardnum desc
+</select>
 
 
 </mapper>
