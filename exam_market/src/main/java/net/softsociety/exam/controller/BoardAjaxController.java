@@ -36,6 +36,7 @@ public class BoardAjaxController {
 	@PostMapping("search")
 	public ArrayList<Board> search(String category, String item){
 		ArrayList<Board> list = service.selectProduct(category, item);
+		log.debug("{}", list);
 		return list;
 	}
 	
