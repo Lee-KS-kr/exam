@@ -5,10 +5,11 @@
 <meta charset="UTF-8">
 <title>Board insert</title>
 <script>
-
+	$.ajax({
+		
+	});
 </script>
 </head>
-
 <body>
 <header>
 	<h1>[ 판매 상품 검색 ]</h1>
@@ -24,6 +25,7 @@
 			</select>
 			<!--검색 input-->
 			<input type="text" id="keyword" name="item">
+
 	</div>
 	<table>
 		<tr>
@@ -32,7 +34,7 @@
 			<td>제목</td>
 		</tr>
 		<tr th:each="b : ${board}">
-			<td th:text="${b.bortdnum}" id="boardnum"></td>
+			<td th:text="${b.boardnum}" id="boardnum"></td>
 			<td th:text="${b.category}" id="category"></td>
 			<td th:text="${b.title}" id="title"></td>
 		</tr>
