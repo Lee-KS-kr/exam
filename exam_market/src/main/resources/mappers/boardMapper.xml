@@ -38,12 +38,12 @@
 		)
 </insert>
 
-<!-- 6) 판매글 읽기 -->
+<!-- 6-1) 판매글 읽기 -->
 <select id="read" resultType="Board">
 		select
-			, memberid
+			memberid
 			, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate 
-			boardnum
+			, boardnum
 			, title
 			, contents
 		from
@@ -52,8 +52,48 @@
 			boardnum = #{boardnum}
 	</select>
 	
+<!-- 6-2) 판매글 삭제 -->
+<delete id="delete" parameterType="Board">
+		delete
+		from
+			market_board
+		where 
+			boardnum = #{boardnum}
+		and
+			memberid = #{memberid}
+	</delete>
+
+<!-- 6-3) 판매글 리플달기 -->
+<insert id="insertReply" parameterType="Reply">
+    insert
+    into
+        market_reply (
+            replynum
+            , boardnum
+            , memberid
+            , replytext
+        )
+    values (
+            market_reply_seq.nextval
+            , #{boardnum}
+            , #{memberid}
+            , #{replytext}
+    )
+</insert>
+
+<!-- 6-4) 판매글 구매하기 -->
+<update id="buyProduct" parameterType="Board">
+    update
+        market_board
+    set
+        soldout = 'Y'
+        , buyerid = #{memberid}
+    where 
+    	boardnum = #{boardnum}
+</update>
+	
 <!-- 7) 판매상품 검색 -->
-<select id="selectProduct" resultType="Board">
+<select id="selectProduct" resultType="Map">
     select
         boardnum
         , category
@@ -65,9 +105,11 @@
         <if test="category != null">
             and category = #{category}
         </if>
+        <if test="item != null and item != ''">
+            and (title like '%' || #{item} || '%' or contents like '%' || #{item} || '%')
+        </if>
     order by
         boardnum desc
 </select>
-
 
 </mapper>
