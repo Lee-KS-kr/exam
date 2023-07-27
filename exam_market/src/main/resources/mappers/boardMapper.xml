@@ -4,7 +4,21 @@
 
 <mapper namespace="net.softsociety.exam.dao.BoardDAO">
 
-<!--판매글 저장 -->
+<!-- 4) 판매 정보 게시판 목록 -->
+<select id="selectAll" resultType="Board">
+    select
+        boardnum
+        , title
+        , memberid
+    from
+        market_board
+    where
+        soldout = 'N'
+    order by
+        boardnum desc
+</select>
+
+<!-- 5) 판매글 등록 -->
 <insert id="insertBoard" parameterType="Board">
 	insert
 	into
@@ -24,35 +38,36 @@
 		)
 </insert>
 
-<!-- 판매글 목록 조회 -->
-<select id="selectAll" resultType="Board">
-    select
-        boardnum
-        , title
-        , memberid
-    from
-        market_board
-    where
-        soldout = 'N'
-    order by
-        boardnum desc
-</select>
-
-<!-- <select id="read" resultType="Board">
+<!-- 6) 판매글 읽기 -->
+<select id="read" resultType="Board">
 		select
-			boardnum
 			, memberid
 			, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate 
-			, hits
+			boardnum
 			, title
 			, contents
-			, originalfile
-			, savedfile
 		from
 			market_board
 		where 
 			boardnum = #{boardnum}
-	</select> -->
+	</select>
+	
+<!-- 7) 판매상품 검색 -->
+<select id="selectProduct" resultType="Board">
+    select
+        boardnum
+        , category
+        , title
+    from
+        market_board
+    where
+        soldout = 'N'
+        <if test="category != null">
+            and category = #{category}
+        </if>
+    order by
+        boardnum desc
+</select>
 
 
 </mapper>
