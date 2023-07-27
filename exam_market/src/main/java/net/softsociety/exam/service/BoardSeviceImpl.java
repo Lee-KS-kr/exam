@@ -30,5 +30,11 @@ public class BoardSeviceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public Board read(int boardnum) {
+		Board b = dao.read(boardnum);
+		return b;
+	}
+
 
 }

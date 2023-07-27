@@ -41,7 +41,16 @@ public class BoardController {
 	@PostMapping("boardinsert")
 	public String boardinsert(Board b, @AuthenticationPrincipal UserDetails user) {
 		b.setMemberid(user.getUsername());
+		log.debug("쓴 글 내용 {}", b);
 		service.insertBoard(b);
 		return "redirect:/board/list";
+	}
+	
+	@GetMapping("read")
+	public String read(Model m, int boardnum) {
+		Board b = service.read(boardnum);
+		m.addAttribute("board", b);
+		
+		return "boardView/boardread";
 	}
 }

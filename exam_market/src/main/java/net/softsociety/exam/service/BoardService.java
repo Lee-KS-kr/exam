@@ -11,5 +11,7 @@ public interface BoardService {
 
 	ArrayList<Board> selectAll();
 
+	Board read(int boardnum);
+
 
 }
