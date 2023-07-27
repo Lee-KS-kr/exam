@@ -28,6 +28,6 @@ public interface BoardDAO {
 
 	int insertReply(Reply r);
 
-	ArrayList<Reply> getAllReply();
+	ArrayList<Reply> getAllReply(int boardnum);
 
 }
