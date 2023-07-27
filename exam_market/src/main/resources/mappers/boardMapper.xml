@@ -41,7 +41,7 @@
 <!-- 6-1) 판매글 읽기 -->
 <select id="read" resultType="Board">
 		select
-			, memberid
+			memberid
 			, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate 
 			, boardnum
 			, title
@@ -74,7 +74,7 @@
             , replytext
         )
     values (
-            #{replynum}
+            market_reply_seq.nextval
             , #{boardnum}
             , #{memberid}
             , #{replytext}
@@ -92,8 +92,8 @@
     	boardnum = #{boardnum}
 </update>
 	
-	<!-- 7) 판매상품 검색 -->
-<select id="selectProduct" resultType="Board">
+<!-- 7) 판매상품 검색 -->
+<select id="selectProduct" resultType="Map">
     select
         boardnum
         , category
@@ -104,6 +104,9 @@
         soldout = 'N'
         <if test="category != null">
             and category = #{category}
+        </if>
+        <if test="item != null and item != ''">
+            and (title like '%' || #{item} || '%' or contents like '%' || #{item} || '%')
         </if>
     order by
         boardnum desc
