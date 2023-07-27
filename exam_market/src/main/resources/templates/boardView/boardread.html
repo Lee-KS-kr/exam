@@ -8,6 +8,8 @@
 <script>
 $(document).ready(function(){
 	init();
+	$('#formBt').click(formSubmit);
+
 });
 
 function init(){
@@ -30,33 +32,44 @@ function init(){
 	});
 }
 
+function formSubmit(){
+	let reply = $('#replytext').val();
+	
+	if(reply.length <= 0 ){
+		alert('댓글을 입력해주세요.');
+		return false;
+	}
+	if(reply.length > 149){
+		alert('댓글은 150자 이내로 작성해주세요.');
+		return false;
+	}
+	return true;
+
+	$.ajax({
+			url: 'insertReply',
+			type: 'post',
+			data: {replytext: replytext, boardnum: boardnum},		
+			success: function(){
+				$('#replytext').val('');
+				alert('저장되었습니다.');
+			},
+			error: function(e){
+				alert(e.statusText);
+			}
+		});
+}
+
 function deleteBoard(boardnum){
 	let result = confirm("삭제하시겠습니까?");
 	if(result == true){
-		$.ajax({
-			url: 'deleteBoard',
-			type: 'get',
-			data: {boardnum : boardnum},
-			success: function(){},	
-			error: function(e){
-				alert('에러가 발생하였습니다.');
-			}						
-		});				
+		location.href="delete?boardnum="+boardnum;
 	}
-	}
+}
 
 function buyBoard(boardnum){
 	let result = confirm("구매하시겠습니까?");
 	if(result == true){
-		$.ajax({
-			url: 'buyBoard',
-			type: 'get',
-			data: {boardnum : boardnum},
-			success: function(){},	
-			error: function(e){
-				alert('에러가 발생하였습니다.');
-			}						
-		});				
+		location.href="buy?boardnum="+boardnum;
 	}
 }
 	
@@ -99,10 +112,10 @@ function buyBoard(boardnum){
 				</tr>
 			</table>
 			
-			<form th:action="@{/board/writeReply}" method="post">
+			<form id="replyForm">
 			<input type="text" name="replytext" id="replytext">
 			<input type="hidden" name="boardnum" th:value="${b.boardnum}">&nbsp;
-			<input type="submit" value="확인"><br><br>
+			<input type="button" value="확인" id="formBt"><br><br>
 			</form>
 			<br>
 			<div id="replylist">
