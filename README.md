@@ -23,7 +23,7 @@ exam_teamPJ
  </div>
   <div>
    <b>3일차 </b>7월 27일(목)<br> 
-   경서 : <br>
+   경서 : 게시글 읽기, 구매, 삭제 관련 controller, service, dao mapping<br>
    은영 : <br>
    의진 : 게시글 리스트 및 게시글 읽기 html 완성<br>
    재호 : boardMapper.xml 완성, boardSearch.html 작성 및 ajax추가 <br>
