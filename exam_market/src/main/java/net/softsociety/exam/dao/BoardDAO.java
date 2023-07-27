@@ -20,4 +20,6 @@ public interface BoardDAO {
 
 	Board read(int boardnum);
 
+	int delete(Board b);
+
 }

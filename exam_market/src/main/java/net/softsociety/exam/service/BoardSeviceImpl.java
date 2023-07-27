@@ -36,5 +36,11 @@ public class BoardSeviceImpl implements BoardService {
 		return b;
 	}
 
+	@Override
+	public int delete(Board b) {
+		int n = dao.delete(b);
+		return n;
+	}
+
 
 }

@@ -49,6 +49,7 @@ public class BoardController {
 	@GetMapping("read")
 	public String read(Model m, int boardnum) {
 		Board b = service.read(boardnum);
+		log.debug("읽을 글 : {}", b);
 		m.addAttribute("board", b);
 		
 		return "boardView/boardread";
@@ -57,5 +58,15 @@ public class BoardController {
 	@GetMapping("search")
 	public String search(Model m) {
 		return "boardView/boardsearch";
+	}
+	
+	@GetMapping("delete")
+	public String delete(@AuthenticationPrincipal UserDetails user, int boardnum) {
+		Board b = new Board();
+		b.setBoardnum(boardnum);
+		b.setMemberid(user.getUsername());
+		service.delete(b);
+		
+		return "redirect:/board/list";
 	}
 }
