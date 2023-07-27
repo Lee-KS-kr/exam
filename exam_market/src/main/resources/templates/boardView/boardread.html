@@ -13,6 +13,7 @@ $(document).ready(function(){
 });
 
 function init(){
+	let boardnum = $('#boardnum').val();
 	$.ajax({
 		url: "replylist",
 		type: "get",
@@ -115,7 +116,7 @@ function buyBoard(boardnum){
 			
 			<form id="replyForm">
 			<input type="text" name="replytext" id="replytext">
-			<input type="hidden" name="boardnum" th:value="${b.boardnum}">&nbsp;
+			<input type="hidden" id="boardnum" name="boardnum" th:value="${b.boardnum}">&nbsp;
 			<input type="button" value="확인" id="formBt"><br><br>
 			</form>
 			<br>
