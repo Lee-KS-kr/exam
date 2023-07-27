@@ -8,7 +8,7 @@ exam_teamPJ
  <div>
    <b>1일차 </b>7월 25일(화)<br> 
    경서 : Github레퍼지토리 생성, 프로젝트 import<br>
-   은영 : <br>
+   은영 : Github레퍼지토리 생성, join html 작성<br>
    의진 : Github레퍼지토리 생성, home, loginForm html 작성<br>
    재호 : Github레퍼지토리 생성 , 프로젝트 import<br>
    <hr>
@@ -16,7 +16,7 @@ exam_teamPJ
   <div>
    <b>2일차 </b>7월 26일(수)<br> 
    경서 : xml : 멤버 저장 xml 작성, 멤버 및 보드 관련 controller mapping<br>
-   은영 : <br>
+   은영 : join js 작성<br>
    의진 : loginForm 수정 및 완성, 게시글 리스트 생성<br>
    재호 : exam_market_sql.txt 작성 , 판매글 저장xml 추가<br>
    <hr>
@@ -24,7 +24,7 @@ exam_teamPJ
   <div>
    <b>3일차 </b>7월 27일(목)<br> 
    경서 : 게시글 읽기, 구매, 삭제 관련 controller, service, dao mapping<br>
-   은영 : <br>
+   은영 : search html, ajax 작성<br>
    의진 : 게시글 리스트 및 게시글 읽기 html 완성<br>
    재호 : boardMapper.xml 완성, boardSearch.html 작성 및 ajax추가 <br>
    <hr>
