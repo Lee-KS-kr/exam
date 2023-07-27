@@ -57,6 +57,9 @@ public class BoardController {
 	
 	@GetMapping("search")
 	public String search(Model m) {
+		ArrayList<Board> list = service.selectAll();
+		m.addAttribute("board", list);
+		
 		return "boardView/boardsearch";
 	}
 	
@@ -66,6 +69,16 @@ public class BoardController {
 		b.setBoardnum(boardnum);
 		b.setMemberid(user.getUsername());
 		service.delete(b);
+		
+		return "redirect:/board/list";
+	}
+	
+	@GetMapping("buyBoard")
+	public String buyBoard(@AuthenticationPrincipal UserDetails user, int boardnum) {
+		Board b = new Board();
+		b.setBoardnum(boardnum);
+		b.setMemberid(user.getUsername());
+		service.buyProduct(b);
 		
 		return "redirect:/board/list";
 	}

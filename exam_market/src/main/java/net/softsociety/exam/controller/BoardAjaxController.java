@@ -1,10 +1,12 @@
 package net.softsociety.exam.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +27,12 @@ public class BoardAjaxController {
 		ArrayList<Board> list = service.selectAll();
 		log.debug("게시글 정보 : {}", list);
 		
+		return list;
+	}
+	
+	@PostMapping("search")
+	public ArrayList<Board> search(String category, String item){
+		ArrayList<Board> list = service.selectProduct(category, item);
 		return list;
 	}
 }

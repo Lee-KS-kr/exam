@@ -15,5 +15,9 @@ public interface BoardService {
 
 	int delete(Board b);
 
+	ArrayList<Board> selectProduct(String category, String item);
+
+	int buyProduct(Board b);
+
 
 }

@@ -22,4 +22,8 @@ public interface BoardDAO {
 
 	int delete(Board b);
 
+	ArrayList<Board> selectProduct(HashMap<String, String> map);
+
+	int buyProduct(Board b);
+
 }
