@@ -4,21 +4,13 @@
 <head>
 <meta charset="UTF-8">
 <title>판매 정보</title>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
 <script>
 	function deleteBoard(num){
 		let result = confirm("삭제하시겠습니까?");
 		if(result == true){
 			 location.href="delete?boardnum="+num;
 		}
-	}
-	
-	function validation(){
-		let replytext = document.getElementById("replytext").value;
-		if(replytext.length < 3){
-			alert("댓글은 3글자 이상부터 작성 가능합니다😥");
-			return false;
-		}
-		return true;
 	}
 	
 </script>
@@ -58,9 +50,6 @@
 									<button class="bottom">구매하기</button>
 							   </a>				   
 							</span>
-							<a th:href="@{/board/list}">
-								<input type="button" value="목록으로 돌아가기"><br><br>
-							</a>
 					</td>
 				</tr>
 			</table>
