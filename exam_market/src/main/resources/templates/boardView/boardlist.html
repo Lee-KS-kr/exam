@@ -3,8 +3,8 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/boardlist.css}"></link>
 <title>게 시 판</title>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
 <script>
 $(document).ready(function(){
 	init();
@@ -21,7 +21,7 @@ function init(){
 			$(list).each(function(i,item){
 				str += '<tr>';
 				str += '<td>' + item.boardnum + '</td>';
-				str += '<td><a th:href="@{/board/read(boardnum=${b.boardnum})}">' + item.title + '</a></td>';
+				str += '<td><a th:href="@{/board/read(boardnum=${item.boardnum})}">' + item.title + '</a></td>';
 				str += '<td>' + item.memberid + '</td>';
 				str += '</tr>';
 			});
