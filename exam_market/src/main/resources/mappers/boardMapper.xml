@@ -10,6 +10,7 @@
         boardnum
         , title
         , memberid
+        , category
     from
         market_board
     where
