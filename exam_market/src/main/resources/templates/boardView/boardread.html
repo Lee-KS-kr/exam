@@ -36,7 +36,7 @@ function deleteBoard(boardnum){
 		$.ajax({
 			url: 'deleteBoard',
 			type: 'get',
-			data: {boardnum : 'boardnum'},
+			data: {boardnum : boardnum},
 			success: function(){},	
 			error: function(e){
 				alert('에러가 발생하였습니다.');
@@ -51,7 +51,7 @@ function buyBoard(boardnum){
 		$.ajax({
 			url: 'buyBoard',
 			type: 'get',
-			data: {boardnum : 'boardnum'},
+			data: {boardnum : boardnum},
 			success: function(){},	
 			error: function(e){
 				alert('에러가 발생하였습니다.');
