@@ -82,6 +82,30 @@
             , #{replytext}
     )
 </insert>
+<!-- 6-3) 판매글 리플읽기 -->
+<select id="getAllReply" resultType="Reply">
+	select
+		replynum
+		, boardnum
+		, memberid
+		, replytext
+		, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate 
+	from
+		market_reply
+	where 
+		boardnum = #{boardnum}
+</select>
+
+<!-- 6-3) 판매글 리플삭제 -->
+<delete id="deleteReply" parameterType="Reply">
+	delete
+	from
+		market_reply
+	where 
+		memberid = #{memberid}
+	and
+		replynum = #{replynum}
+</delete>
 
 <!-- 6-4) 판매글 구매하기 -->
 <update id="buyProduct" parameterType="Board">
