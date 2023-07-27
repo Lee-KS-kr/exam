@@ -15,23 +15,6 @@
 		var keyword = $("#keyword").val();
 		var category = $("select[name='category']").val();
 		
-		$.ajax({
-			type: 'POST',
-			url: "boardsearch",
-			data: {
-				item: keyword,
-				category: category,
-			},
-			dataType: 'json',
-			success: function (list) {
-				updateSearchResults(data);
-			},
-			error: function (error) {
-				console.error("검색중 오류 발생: ",error);
-			}	
-		});
-	}
-	
 	function updateSearchResults(data) {
 		$.ajax({
 			url: 'search',
