@@ -38,7 +38,7 @@
 		)
 </insert>
 
-<!-- 6) 판매글 읽기 -->
+<!-- 6-1) 판매글 읽기 -->
 <select id="read" resultType="Board">
 		select
 			, memberid
@@ -52,7 +52,48 @@
 			boardnum = #{boardnum}
 	</select>
 	
-<!-- 7) 판매상품 검색 -->
+<!-- 6-2) 판매글 삭제 -->
+<delete id="delete" parameterType="Board">
+		delete
+		from
+			market_board
+		where 
+			boardnum = #{boardnum}
+		and
+			memberid = #{memberid}
+	</delete>
+
+<!-- 6-3) 판매글 리플달기 -->
+<insert id="insertReply" parameterType="Reply">
+		insert
+		into
+			market_reply (
+				, replynum
+				, boardnum
+				, memberid
+				, replytext
+			)
+		values (
+				spring5_reply_seq.nextval
+				, #{replynum}
+				, #{boardnum}
+				, #{memberid}
+				, #{replytext}
+		)
+	</insert>
+
+
+<!-- 6-4) 판매글 구매하기 -->
+<update id="buyProduct" parameterType="Board">
+    update
+    	market_board
+    set
+    	soldout = 'Y'
+        , buyerid = #{memberid}
+    where boardnum = #{boardnum}
+</update>
+	
+	<!-- 7) 판매상품 검색 -->
 <select id="selectProduct" resultType="Board">
     select
         boardnum
@@ -68,6 +109,5 @@
     order by
         boardnum desc
 </select>
-
 
 </mapper>
