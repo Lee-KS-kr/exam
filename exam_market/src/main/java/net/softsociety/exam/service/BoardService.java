@@ -19,5 +19,9 @@ public interface BoardService {
 
 	int buyProduct(Board b);
 
+	int insertReply(Reply r);
+
+	ArrayList<Reply> getAllReply();
+
 
 }

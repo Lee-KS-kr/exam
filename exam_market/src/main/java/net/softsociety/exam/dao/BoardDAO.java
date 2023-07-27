@@ -26,4 +26,8 @@ public interface BoardDAO {
 
 	int buyProduct(Board b);
 
+	int insertReply(Reply r);
+
+	ArrayList<Reply> getAllReply();
+
 }

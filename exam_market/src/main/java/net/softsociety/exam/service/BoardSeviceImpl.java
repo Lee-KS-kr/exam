@@ -61,5 +61,17 @@ public class BoardSeviceImpl implements BoardService {
 		return n;
 	}
 
+	@Override
+	public int insertReply(Reply r) {
+		int n = dao.insertReply(r);
+		return n;
+	}
+
+	@Override
+	public ArrayList<Reply> getAllReply() {
+		ArrayList<Reply> list = dao.getAllReply();
+		return null;
+	}
+
 
 }
