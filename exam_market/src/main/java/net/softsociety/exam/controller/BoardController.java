@@ -53,4 +53,9 @@ public class BoardController {
 		
 		return "boardView/boardread";
 	}
+	
+	@GetMapping("search")
+	public String search(Model m) {
+		return "boardView/boardsearch";
+	}
 }
