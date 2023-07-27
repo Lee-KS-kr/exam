@@ -13,5 +13,15 @@ public interface BoardService {
 
 	Board read(int boardnum);
 
+	int delete(Board b);
+
+	ArrayList<Board> selectProduct(String category, String item);
+
+	int buyProduct(Board b);
+
+	int insertReply(Reply r);
+
+	ArrayList<Reply> getAllReply(int boardnum);
+
 
 }
