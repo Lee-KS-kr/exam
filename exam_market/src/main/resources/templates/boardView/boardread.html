@@ -16,6 +16,7 @@ function init(){
 	$.ajax({
 		url: "replylist",
 		type: "get",
+		data: {boardnum: boardnum},
 		dataType: "json",
 		success: function(replylist){
 			let str = '<table>';
