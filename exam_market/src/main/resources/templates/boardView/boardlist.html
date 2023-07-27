@@ -21,7 +21,7 @@ function init(){
 			$(list).each(function(i,item){
 				str += '<tr>';
 				str += '<td>' + item.boardnum + '</td>';
-				str += '<td><a th:href="@{/board/read(boardnum=' + item.boardnum + ')}">' + item.title + '</a></td>';
+				str += '<td><a href="/board/read?boardnum=' + item.boardnum + '">' + item.title + '</a></td>';
 				str += '<td>' + item.memberid + '</td>';
 				str += '</tr>';
 			});
@@ -33,25 +33,27 @@ function init(){
 </script>
 <style>
 .text-left{
-    float: left;
-}
-
-.text-right{
-    float: right;
+    text-align: left;
 }
 </style>
 </head>
 <body>
 	<h1><a th:href="@{/board/list}">[ 판매 정보 게시판 ]</a></h1>
 	
-	<div class="container_flex">
- 		<p sec:authorize="isAuthenticated()" class="text-left"><a th:href="@{/board/write}">판매글 등록</a></p>
+	<div>
+ 		<p sec:authorize="isAuthenticated()" class="text-left">
+ 			<a th:href="@{/board/write}">판매글 등록</a>
+ 		</p>
+   		<a th:href="@{/board/list}">
+		<input type="button" value="목록으로 돌아가기">
+		</a>
    	</div>
-	
+	<br><br>
 	<!-- 목록 출력 영역 -->
 	<div id="divlist">
 					
 	</div>
+	
      
 	
 </body>
