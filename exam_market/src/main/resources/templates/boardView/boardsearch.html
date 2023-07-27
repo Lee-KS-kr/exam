@@ -5,9 +5,35 @@
 <meta charset="UTF-8">
 <title>Board insert</title>
 <script>
-	$.ajax({
-		
+	$(document).ready(function() {
+		$("#keyword").keyup(function () {
+			search();
+		});
 	});
+	
+	function search() {
+		var keyword = $("#keyword").val();
+		var category = $("select[name='category']").val();
+		
+		$.ajax({
+			url: 'search',
+			type:'POST',
+			dataType: 'json',
+			data: {item: keyword, category: category},
+			success: function(ilst) {
+				let str = '<table>';
+				$(list).each(function (i, item){
+					str += '<tr>';
+					str += '<td>' + item.boardnum + '<td>';
+					str += '<td>' + item.category + '<td>';
+					str += '<td>' + item.title + '<td>';
+					str += '</tr>';					
+				});
+				str += '</table>';
+				$('#listDiv').html(str);
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -17,7 +43,7 @@
 <section>
 	<div> <!--선택박스-->
 		<form th:action="@{/board/boardsearch}" method="post">
-			<select name="catecory">
+			<select name="category">
 				<option value="all" selected>전체</option>
 				<option value="computer">컴퓨터 및 주변기기</option>
 				<option value="camera">카메라</option>
@@ -25,20 +51,16 @@
 			</select>
 			<!--검색 input-->
 			<input type="text" id="keyword" name="item">
-
+		</form>
+		<table>
+			<tr>
+				<td>번호</td>
+				<td>카테고리</td>
+				<td>제목</td>
+			</tr>
+		</table> <br>
+		<div id="listDiv"></div>
 	</div>
-	<table>
-		<tr>
-			<td>번호</td>
-			<td>카테고리</td>
-			<td>제목</td>
-		</tr>
-		<tr th:each="b : ${board}">
-			<td th:text="${b.boardnum}" id="boardnum"></td>
-			<td th:text="${b.category}" id="category"></td>
-			<td th:text="${b.title}" id="title"></td>
-		</tr>
-	</table>
 </section>
 </body>
 </html>
