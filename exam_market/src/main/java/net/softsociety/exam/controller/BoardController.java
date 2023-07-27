@@ -73,7 +73,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("buyBoard")
+	@GetMapping("buy")
 	public String buyBoard(@AuthenticationPrincipal UserDetails user, int boardnum) {
 		Board b = new Board();
 		b.setBoardnum(boardnum);
