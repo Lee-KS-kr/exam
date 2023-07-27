@@ -16,14 +16,14 @@
 <section>
 	<div> <!--선택박스-->
 		<form th:action="@{/board/boardsearch}" method="post">
-			<select>
-				<option value="computer" selected>전체</option>
+			<select name="catecory">
+				<option value="all" selected>전체</option>
 				<option value="computer">컴퓨터 및 주변기기</option>
 				<option value="camera">카메라</option>
 				<option value="car">자동차용품</option>
-			</select><br>
+			</select>
 			<!--검색 input-->
-			<input type="text" id="keyword">
+			<input type="text" id="keyword" name="item">
 	</div>
 	<table>
 		<tr>
