@@ -74,7 +74,6 @@
 				, replytext
 			)
 		values (
-				spring5_reply_seq.nextval
 				, #{replynum}
 				, #{boardnum}
 				, #{memberid}
