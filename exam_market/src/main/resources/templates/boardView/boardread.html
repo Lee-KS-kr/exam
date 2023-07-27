@@ -12,18 +12,29 @@ $(document).ready(function(){
 
 function init(){
 	$.ajax({
-		url: "getBoard",
+		url: "replylist",
 		type: "get",
 		dataType: "json",
-		success: function(){}
+		success: function(replylist){
+			let str = '<table>';
+			$(replylist).each(function(i,item){
+				str += '<tr>';
+				str += '<td>' + item.memberid + '</td>';
+				str += '<td>' + item.replytext + '</td>';
+				str += '<td>' + item.inputdate + '</td>';
+				str += '</tr>';
+			});
+			str += '</table>';
+			$('#replylist').html(str);
+		}
 	});
 }
 
-function deleteBoard(num){
+function deleteBoard(boardnum){
 	let result = confirm("삭제하시겠습니까?");
 	if(result == true){
 		$.ajax({
-			url: 'deleteBoard',
+			url: 'deleteBoard/'+boardnum,
 			type: 'get',
 			success: function(){},	
 			error: function(e){
@@ -33,11 +44,11 @@ function deleteBoard(num){
 	}
 	}
 
-function buyBoard(num){
+function buyBoard(boardnum){
 	let result = confirm("구매하시겠습니까?");
 	if(result == true){
 		$.ajax({
-			url: 'buyBoard',
+			url: 'buyBoard/'+boardnum,
 			type: 'get',
 			success: function(){},	
 			error: function(e){
@@ -52,7 +63,7 @@ function buyBoard(num){
 <body>
 	<h1>[ 판매 정보 ]</h1>
 	
-		<div id="readBoard" th:if="${board != null}">
+		<div id="readBoard" th:each="${b : board}">
 			<table>
 				<tr>
 		            <th>작성자</th>
@@ -68,7 +79,7 @@ function buyBoard(num){
 				</tr>
 				<tr>
 					<th>내용</th>	
-					<td th:text="${b.contents}">			
+					<td th:text="${b.contents}"></td>			
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -92,13 +103,9 @@ function buyBoard(num){
 			<input type="submit" value="확인"><br><br>
 			</form>
 			<br>
-			<table class="replylist" th:if="${reply != null}">
-				<tr th:each="reply:${reply}">
-					<th th:text="${reply.memberid}"></th>
-					<td th:text="${reply.replytext}"></td>
-					<td class="list_right" th:text="${reply.inputdate}"></td>
-				</tr>
-			</table>
+			<div id="replylist">
+					
+			</div>
 		</div>
 </body>
 </html>
