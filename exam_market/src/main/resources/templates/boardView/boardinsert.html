@@ -8,11 +8,11 @@
 		let title = document.getElementById('title');
 		let contents = document.getElementById('contents');
 		
-		if(title.value < 5) {
+		if(title.value < 5 || title.value > 100) {
 			alert("제목을 입력하세요.");
 			return false;
 		}
-		if(contents.value < 5) {
+		if(contents.value < 5 || contents.value > 1000) {
 			alert("내용을 입력하세요.");
 			return false;
 		}
