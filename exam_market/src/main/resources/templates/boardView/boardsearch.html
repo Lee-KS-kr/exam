@@ -1,14 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Board insert</title>
 <script>
-	
+
 </script>
 </head>
+
 <body>
-	<h1>[ 판매글 검색 ]</h1>
-	
+<header>
+	<h1>[ 판매 상품 검색 ]</h1>
+</header>
+<section>
+	<div> <!--선택박스-->
+		<form th:action="@{/board/boardsearch}" method="post">
+			<select>
+				<option value="computer" selected>전체</option>
+				<option value="computer">컴퓨터 및 주변기기</option>
+				<option value="camera">카메라</option>
+				<option value="car">자동차용품</option>
+			</select><br>
+			<!--검색 input-->
+			<input type="text" id="keyword">
+	</div>
+	<table>
+		<tr>
+			<td>번호</td>
+			<td>카테고리</td>
+			<td>제목</td>
+		</tr>
+		<tr th:each="b : ${board}">
+			<td th:text="${b.bortdnum}" id="boardnum"></td>
+			<td th:text="${b.category}" id="category"></td>
+			<td th:text="${b.title}" id="title"></td>
+		</tr>
+	</table>
+</section>
 </body>
 </html>
