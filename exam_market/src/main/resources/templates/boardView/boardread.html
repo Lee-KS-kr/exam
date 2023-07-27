@@ -6,72 +6,99 @@
 <title>판매 정보</title>
 <script th:src="@{/js/jquery-3.6.0.js}"></script>
 <script>
-	function deleteBoard(num){
-		let result = confirm("삭제하시겠습니까?");
-		if(result == true){
-			 location.href="delete?boardnum="+num;
-		}
+$(document).ready(function(){
+	init();
+});
+
+function init(){
+	$.ajax({
+		url: "getBoard",
+		type: "get",
+		dataType: "json",
+		success: function(){}
+	});
+}
+
+function deleteBoard(num){
+	let result = confirm("삭제하시겠습니까?");
+	if(result == true){
+		$.ajax({
+			url: 'deleteBoard',
+			type: 'get',
+			success: function(){},	
+			error: function(e){
+				alert('에러가 발생하였습니다.');
+			}						
+		});				
 	}
+	}
+
+function buyBoard(num){
+	let result = confirm("구매하시겠습니까?");
+	if(result == true){
+		$.ajax({
+			url: 'buyBoard',
+			type: 'get',
+			success: function(){},	
+			error: function(e){
+				alert('에러가 발생하였습니다.');
+			}						
+		});				
+	}
+}
 	
 </script>
 </head>
 <body>
 	<h1>[ 판매 정보 ]</h1>
 	
-		<div th:if="${board != null}" class="list">
+		<div id="readBoard" th:if="${board != null}">
 			<table>
 				<tr>
-		            <th class="texta">작성자</th>
-					<td th:text="${b.memberid}"></td>
+		            <th>작성자</th>
+		            <td th:text="${b.memberid}"></td>
 				</tr>
 				<tr>
-		            <th class="texta">작성일</th>
-					<td th:text="${b.inputdate}"></td>
+		            <th>작성일</th>
+		            <td th:text="${b.inputdate}"></td>
 		        </tr>
 				<tr>
-		            <th class="texta">제목</th>
-					<td th:text="${b.title}"></td>
+		            <th>제목</th>
+		            <td th:text="${b.title}"></td>
 				</tr>
 				<tr>
-					<th class="texta">내용</th>
-					<td id="contents">
-						<pre th:text="${b.contents}"></pre>
-					</td>				
+					<th>내용</th>	
+					<td th:text="${b.contents}">			
 				</tr>
 				<tr>
-					<td colspan="2" class="bottom-container">
-							<span th:if="${#authentication.name} == ${b.memberid}">
-								<a th:href="|javascript:deleteBoard(boardnum=${b.boardnum})|" class="bottom">
-									<button class="bottom">삭제</button>
-							   </a>				   
-							</span>
-							<span th:if="${#authentication.name} != ${b.memberid}">
-								<a th:href="" class="bottom">
-									<button class="bottom">구매하기</button>
-							   </a>				   
-							</span>
+					<td colspan="2">
+						<span th:if="${#authentication.name} == ${b.memberid}">
+							<a th:href="|javascript:deleteBoard(boardnum=${b.boardnum})|">
+								<button class="bottom">삭제</button>
+						   </a>				   
+						</span>
+						<span th:if="${#authentication.name} != ${b.memberid}">
+							<a th:href="|javascript:buyBoard(boardnum=${b.boardnum})|">
+								<button class="bottom">구매하기</button>
+						   </a>				   
+						</span>
 					</td>
 				</tr>
 			</table>
 			
-			<div class="bottom-container">
-				<!-- 리플 작성 폼 -->
-				<!-- 작성한 글 내용, 글번호를 서버로 전송하여 DB에 저장 -->
-				<form th:action="@{/board/writeReply}" method="post" onsubmit="return validation()">
-				<input type="text" name="replytext" id="replytext">
-				<input type="hidden" name="boardnum" th:value="${b.boardnum}">&nbsp;
-				<input type="submit" value="확인"><br><br>
-				</form>
-				<!-- 리플 목록 -->
-				<br>
-				<table class="replylist" th:if="${reply != null}">
-					<tr th:each="reply:${reply}">
-						<th th:text="${reply.memberid}"></th>
-						<td th:text="${reply.replytext}"></td>
-						<td class="list_right" th:text="${reply.inputdate}"></td>
-					</tr>
-				</table>
-			</div>
+			<form th:action="@{/board/writeReply}" method="post">
+			<input type="text" name="replytext" id="replytext">
+			<input type="hidden" name="boardnum" th:value="${b.boardnum}">&nbsp;
+			<input type="submit" value="확인"><br><br>
+			</form>
+			<br>
+			<table class="replylist" th:if="${reply != null}">
+				<tr th:each="reply:${reply}">
+					<th th:text="${reply.memberid}"></th>
+					<td th:text="${reply.replytext}"></td>
+					<td class="list_right" th:text="${reply.inputdate}"></td>
+				</tr>
+			</table>
 		</div>
 </body>
 </html>
