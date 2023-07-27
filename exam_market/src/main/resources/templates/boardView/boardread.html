@@ -35,13 +35,14 @@ function init(){
 }
 
 function formSubmit(){
-	let reply = $('#replytext').val();
+	let replytext = $('#replytext').val();
+	let boardnum = $('#boardnum').val();
 	
-	if(reply.length <= 0 ){
+	if(replytext.length <= 0 ){
 		alert('댓글을 입력해주세요.');
 		return false;
 	}
-	if(reply.length > 149){
+	if(replytext.length > 149){
 		alert('댓글은 150자 이내로 작성해주세요.');
 		return false;
 	}
@@ -53,6 +54,7 @@ function formSubmit(){
 			success: function(){
 				$('#replytext').val('');
 				alert('저장되었습니다.');
+				init();
 			},
 			error: function(e){
 				alert(e.statusText);
