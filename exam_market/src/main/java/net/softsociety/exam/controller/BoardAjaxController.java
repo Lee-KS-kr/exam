@@ -40,12 +40,12 @@ public class BoardAjaxController {
 	}
 	
 	@GetMapping("replylist")
-	public ArrayList<Reply> replylist(){
-		ArrayList<Reply> list = service.getAllReply();
+	public ArrayList<Reply> replylist(int boardnum){
+		ArrayList<Reply> list = service.getAllReply(boardnum);
 		return list;
 	}
 	
-	@PostMapping("writeReply")
+	@PostMapping("insertReply")
 	public void writeReply(@AuthenticationPrincipal UserDetails user, Reply r) {
 		r.setMemberid(user.getUsername());
 		service.insertReply(r);

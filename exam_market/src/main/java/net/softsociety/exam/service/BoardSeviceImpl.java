@@ -68,8 +68,8 @@ public class BoardSeviceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<Reply> getAllReply() {
-		ArrayList<Reply> list = dao.getAllReply();
+	public ArrayList<Reply> getAllReply(int boardnum) {
+		ArrayList<Reply> list = dao.getAllReply(boardnum);
 		return null;
 	}
 
