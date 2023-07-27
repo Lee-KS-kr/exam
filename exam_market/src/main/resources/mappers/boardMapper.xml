@@ -43,7 +43,7 @@
 		select
 			, memberid
 			, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate 
-			boardnum
+			, boardnum
 			, title
 			, contents
 		from
@@ -65,31 +65,31 @@
 
 <!-- 6-3) 판매글 리플달기 -->
 <insert id="insertReply" parameterType="Reply">
-		insert
-		into
-			market_reply (
-				, replynum
-				, boardnum
-				, memberid
-				, replytext
-			)
-		values (
-				, #{replynum}
-				, #{boardnum}
-				, #{memberid}
-				, #{replytext}
-		)
-	</insert>
-
+    insert
+    into
+        market_reply (
+            replynum
+            , boardnum
+            , memberid
+            , replytext
+        )
+    values (
+            #{replynum}
+            , #{boardnum}
+            , #{memberid}
+            , #{replytext}
+    )
+</insert>
 
 <!-- 6-4) 판매글 구매하기 -->
 <update id="buyProduct" parameterType="Board">
     update
-    	market_board
+        market_board
     set
-    	soldout = 'Y'
+        soldout = 'Y'
         , buyerid = #{memberid}
-    where boardnum = #{boardnum}
+    where 
+    	boardnum = #{boardnum}
 </update>
 	
 	<!-- 7) 판매상품 검색 -->
