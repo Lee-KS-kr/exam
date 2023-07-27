@@ -63,7 +63,7 @@ function buyBoard(boardnum){
 <body>
 	<h1>[ 판매 정보 ]</h1>
 	
-		<div id="readBoard" th:each="${b : board}">
+		<div id="readBoard" th:each="b : ${board}">
 			<table>
 				<tr>
 		            <th>작성자</th>
