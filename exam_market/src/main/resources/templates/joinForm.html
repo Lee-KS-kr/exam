@@ -15,8 +15,8 @@ function check() {
 	$.ajax({
 	    url: "idCheck",
 	    type: "post",
-	    data: memberid,
-		dataType : "json",
+	    data: {id : memberid},
+	    data : text,
 	    success:function(data){
 	        if(data.cnt > 0){ 
 	        	alert("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
