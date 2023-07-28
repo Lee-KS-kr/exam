@@ -87,7 +87,6 @@ function buyBoard(boardnum){
 }
 
 function deleteReply(replynum, boardnum) {
-	let delCnt2 = parseInt(delCnt);
 	let result = confirm("삭제하시겠습니까?");
 	if(result == true){
 		
@@ -97,9 +96,12 @@ function deleteReply(replynum, boardnum) {
 			data: { replynum: replynum, boardnum: boardnum },
 			dataType: "text",
 			success: function(delCnt){
-				if(delCnt2 == 0){
+				if(delCnt == '1'){
 					alert('댓글이 삭제되었습니다.');
 					init();
+				}
+				else{
+					alert('댓글 삭제를 실패했습니다.');
 				}
 			},
 			error: function(){
