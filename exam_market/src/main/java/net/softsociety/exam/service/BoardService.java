@@ -23,5 +23,7 @@ public interface BoardService {
 
 	ArrayList<Reply> getAllReply(int boardnum);
 
+	int deleteReply(Reply r);
+
 
 }
