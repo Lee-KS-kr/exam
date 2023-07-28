@@ -26,10 +26,9 @@
 				$(list).each(function (i, item){
 					str += '<tr>';
 					//글 제목을 누르면 해당하는 글 내용을 보여주기
-					str += '<td><a href="/market/board/read?boardnum=' + item.BOARDNUM + '">' + item.TITLE + '</a></td>';
 					str += '<td>' + item.BOARDNUM + '<td>';
 					str += '<td>' + item.CATEGORY + '<td>';
-					str += '<td>' + item.TITLE + '<td>';
+					str += '<td><a href="/market/board/read?boardnum=' + item.BOARDNUM + '">' + item.TITLE + '</a></td>';
 					str += '</tr>';					
 				});
 				str += '</table>';
