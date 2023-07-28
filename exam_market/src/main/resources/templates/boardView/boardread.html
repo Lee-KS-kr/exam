@@ -32,11 +32,14 @@ function init(){
 				str += '<td>' + item.memberid + '</td>';
 				str += '<td>' + item.replytext + '</td>';
 				str += '<td>' + item.inputdate + '</td>';
-				str += '<td><a href="|javascript:deleteReply(' + item.replynum + ',' + item.boardnum + ')|">x</a></td>';
+				str += '<td><a href="javascript:deleteReply(' + item.replynum + ',' + item.boardnum + ')">x</a></td>';
 				str += '</tr>';
 			});
 			str += '</table>';
 			$('#replylist').html(str);
+		},
+		error: function(){
+			alert('댓글을 삭제할 수 없습니다.');
 		}
 	});
 }
