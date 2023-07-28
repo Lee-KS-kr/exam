@@ -1,11 +1,14 @@
 package net.softsociety.exam.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.exam.domain.Member;
@@ -36,6 +39,36 @@ public class MemberController {
 	public String join(Member mem) {
 		service.insertMember(mem);
 		return "redirect:/";
+	}
+	
+	@GetMapping("mypage")
+	public String mypage(@AuthenticationPrincipal UserDetails user, Model m) {
+		Member mem = service.selectOne(user.getUsername());
+		m.addAttribute("member", mem);
+		
+		return "mypage";
+	}
+	
+	@GetMapping("update")
+	public String update(@AuthenticationPrincipal UserDetails user, Model m) {
+		Member mem = service.selectOne(user.getUsername());
+		m.addAttribute("member", mem);
+		
+		return "update";
+	}
+	
+	@PostMapping("update")
+	public String editProfile(@AuthenticationPrincipal UserDetails user, Member m) {
+		m.setMembername(user.getUsername());
+		service.updateMember(m);
+		
+		return "redirect:/member/mypage";
+	}
+	
+	@ResponseBody
+	@PostMapping("idCheck")
+	public int duplicationCheck(String id) {
+		return service.duplicationCheck(id);
 	}
 
 }

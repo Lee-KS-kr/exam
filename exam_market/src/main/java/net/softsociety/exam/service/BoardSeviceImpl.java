@@ -71,5 +71,11 @@ public class BoardSeviceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public int deleteReply(Reply r) {
+		int n = dao.deleteReply(r);
+		return n;
+	}
+
 
 }

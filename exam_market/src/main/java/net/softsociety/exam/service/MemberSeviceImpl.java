@@ -23,6 +23,24 @@ public class MemberSeviceImpl implements MemberService {
 		return n;
 	}
 
+	@Override
+	public int duplicationCheck(String id) {
+		int n = dao.duplicationCheck(id);
+		return n;
+	}
+
+	@Override
+	public Member selectOne(String username) {
+		Member m = dao.selectOne(username);
+		return m;
+	}
+
+	@Override
+	public int updateMember(Member m) {
+		int n = dao.updateMember(m);
+		return n;
+	}
+
    
 
 }
