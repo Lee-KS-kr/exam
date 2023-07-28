@@ -89,8 +89,6 @@ function buyBoard(boardnum){
 function deleteReply(replynum, boardnum) {
 	let result = confirm("삭제하시겠습니까?");
 	if(result == true){
-		let boardnum = $('#boardnum').val();
-		let replynum = $('#replynum').val();
 		
 		$.ajax({
 			url: 'deleteReply',
