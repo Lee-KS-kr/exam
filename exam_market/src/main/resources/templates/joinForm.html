@@ -5,10 +5,12 @@
 <title>join</title>
 <script th:src="@{/js/jquery-3.6.0.js}"></script>
 <script>
-$("#memberid").keyup(function () {
-	idCheck();
-});
 
+$(document).ready(function(){
+	$("#memberid").keyup(function () {
+		idCheck();
+	});
+});
 function idCheck(){
 	let memberid = document.getElementById('memberid').value;
 
@@ -18,7 +20,7 @@ function idCheck(){
 	    data: {id : memberid},
 	    dataType : "text",
 	    success:function(data){
-	        if(data > 0){ 
+	        if(data.length > 0){ 
 	        	$('#idspan').html("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
 	        } else {
 	        	$('#idspan').html("사용가능한 아이디입니다");

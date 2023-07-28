@@ -32,7 +32,7 @@ function init(){
 				str += '<td>' + item.memberid + '</td>';
 				str += '<td>' + item.replytext + '</td>';
 				str += '<td>' + item.inputdate + '</td>';
-				str += `<td><a href="|javascript:deleteReply(item.replynum,item.boardnum)|">x</a></td>`;
+				str += '<td><a href="|javascript:deleteReply(' + item.replynum + ',' + item.boardnum + ')|">x</a></td>';
 				str += '</tr>';
 			});
 			str += '</table>';
