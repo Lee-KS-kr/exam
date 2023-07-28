@@ -32,7 +32,7 @@ function init(){
 				str += '<td>' + item.memberid + '</td>';
 				str += '<td>' + item.replytext + '</td>';
 				str += '<td>' + item.inputdate + '</td>';
-				str += `<td><a href="|javascript:deleteReply(item.replynum,item.boardnum)|">x</a></td>`;
+				str += '<td><a href="|javascript:deleteReply(' + item.replynum + ',' + item.boardnum + ')|">x</a></td>';
 				str += '</tr>';
 			});
 			str += '</table>';
@@ -45,7 +45,7 @@ function formSubmit(){
 	let replytext = $('#replytext').val();
 	let boardnum = $('#boardnum').val();
 	
-	if(replytext.length <= 0 ){
+	if(replytext <= 0 ){
 		alert('댓글을 입력해주세요.');
 		return false;
 	}
