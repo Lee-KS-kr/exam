@@ -11,7 +11,7 @@ $("#memberid").keyup(function () {
 });
 
 function idCheck(){
-	let memberid = document.getElementById('memberid');
+	let memberid = document.getElementById('memberid').value;
 	let idChk = 0;
 
 	$.ajax({
