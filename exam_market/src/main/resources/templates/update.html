@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>market</title>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
+
+</head>
+<body>
+		<h1>[ 개인정보 수정 ]</h1>
+		<div>
+			<form th:action="@{/member/update}"  method="post" onsubmit="return check();">
+			<table th:each="member : ${member}">
+				<tr>
+					<th>아이디</th>
+					<td th:text="${member.memberid}"></td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td th:text="${member.name}"></td>
+				</tr>
+				<tr>
+					<th>전화번호</th>
+					<td><input type="text" name="phone" th:value="${member.phone}"></td>
+				</tr>
+			</table>
+			<br>
+			
+			<input type="submit" value="확인">
+			
+			</form>	
+		</div>
+</body>
+</html>
