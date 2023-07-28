@@ -29,6 +29,7 @@ public class WebSecurityConfig {
         		"/member/join",
         		"/member/idCheck",
         		"/board/list",
+        		"/board/boardlist",
                 "/image/**",
                 "/css/**",
                 "/js/**").permitAll()
