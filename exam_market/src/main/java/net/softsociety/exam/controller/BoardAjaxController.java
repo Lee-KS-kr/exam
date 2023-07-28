@@ -51,4 +51,10 @@ public class BoardAjaxController {
 		r.setMemberid(user.getUsername());
 		service.insertReply(r);
 	}
+	
+	@PostMapping("deleteReply")
+	public void deleteReply(@AuthenticationPrincipal UserDetails user, Reply r) {
+		r.setMemberid(user.getUsername());
+		service.deleteReply(r);
+	}
 }
