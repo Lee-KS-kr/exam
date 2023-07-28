@@ -14,4 +14,22 @@ import net.softsociety.exam.domain.Reply;
 @Mapper
 public interface BoardDAO {
 
+	int insertBoard(Board b);
+
+	ArrayList<Board> selectAll();
+
+	Board read(int boardnum);
+
+	int delete(Board b);
+
+	ArrayList<Board> selectProduct(HashMap<String, String> map);
+
+	int buyProduct(Board b);
+
+	int insertReply(Reply r);
+
+	ArrayList<Reply> getAllReply(int boardnum);
+
+	int deleteReply(Reply r);
+
 }

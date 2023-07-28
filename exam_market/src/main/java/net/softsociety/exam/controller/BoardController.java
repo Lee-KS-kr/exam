@@ -35,6 +35,51 @@ public class BoardController {
 	
 	@GetMapping("write")
 	public String wirte() {
-		return "redirect:/";
+		return "boardView/boardinsert";
+	}
+	
+	@PostMapping("boardinsert")
+	public String boardinsert(Board b, @AuthenticationPrincipal UserDetails user) {
+		b.setMemberid(user.getUsername());
+		log.debug("쓴 글 내용 {}", b);
+		service.insertBoard(b);
+		return "redirect:/board/list";
+	}
+	
+	@GetMapping("read")
+	public String read(Model m, int boardnum) {
+		Board b = service.read(boardnum);
+		log.debug("읽을 글 : {}", b);
+		m.addAttribute("board", b);
+		
+		return "boardView/boardread";
+	}
+	
+	@GetMapping("search")
+	public String search(Model m) {
+		ArrayList<Board> list = service.selectAll();
+		m.addAttribute("board", list);
+		
+		return "boardView/boardsearch";
+	}
+	
+	@GetMapping("delete")
+	public String delete(@AuthenticationPrincipal UserDetails user, int boardnum) {
+		Board b = new Board();
+		b.setBoardnum(boardnum);
+		b.setMemberid(user.getUsername());
+		service.delete(b);
+		
+		return "redirect:/board/list";
+	}
+	
+	@GetMapping("buy")
+	public String buyBoard(@AuthenticationPrincipal UserDetails user, int boardnum) {
+		Board b = new Board();
+		b.setBoardnum(boardnum);
+		b.setMemberid(user.getUsername());
+		service.buyProduct(b);
+		
+		return "redirect:/board/list";
 	}
 }

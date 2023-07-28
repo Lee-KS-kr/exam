@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Board insert</title>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
+<script>
+	$(document).ready(function() {
+		$("#keyword").keyup(function () {
+			search();
+		});
+	});
+	
+	function search() {
+		var keyword = $("#keyword").val();
+		var category = $("select[name='category']").val();
+		
+		$.ajax({
+			url: 'search',
+			type:'POST',
+			dataType: 'json',
+			data: {item: keyword, category: category},
+			success: function(list) {
+				let str = '<table>';
+				$(list).each(function (i, item){
+					str += '<tr>';
+					//글 제목을 누르면 해당하는 글 내용을 보여주기
+					str += '<td>' + item.BOARDNUM + '<td>';
+					str += '<td>' + item.CATEGORY + '<td>';
+					str += '<td><a href="/market/board/read?boardnum=' + item.BOARDNUM + '">' + item.TITLE + '</a></td>';
+					str += '</tr>';					
+				});
+				str += '</table>';
+				$('#listDiv').html(str);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+<header>
+	<h1>[ 판매 상품 검색 ]</h1>
+</header>
+<section>
+	<div> <!--선택박스-->
+		<form th:action="@{/board/boardsearch}" method="post">
+			<select name="category">
+				<option value="all" selected>전체</option>
+				<option value="computer">컴퓨터 및 주변기기</option>
+				<option value="camera">카메라</option>
+				<option value="car">자동차용품</option>
+			</select>
+			<!--검색 input-->
+			<input type="text" id="keyword" name="item">
+		</form>
+		<table>
+			<tr>
+				<td>번호</td>
+				<td>카테고리</td>
+				<td>제목</td>
+			</tr>
+		</table> <br>
+		<div id="listDiv"></div>
+	</div>
+</section>
+</body>
+</html>

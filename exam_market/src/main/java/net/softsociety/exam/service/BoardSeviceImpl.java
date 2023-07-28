@@ -15,6 +15,67 @@ import net.softsociety.exam.domain.Reply;
 @Transactional
 @Service
 public class BoardSeviceImpl implements BoardService {
+	@Autowired
+	BoardDAO dao;
+
+	@Override
+	public int insertBoard(Board b) {
+		int n = dao.insertBoard(b);
+		return n;
+	}
+
+	@Override
+	public ArrayList<Board> selectAll() {
+		ArrayList<Board> list = dao.selectAll();
+		return list;
+	}
+
+	@Override
+	public Board read(int boardnum) {
+		Board b = dao.read(boardnum);
+		return b;
+	}
+
+	@Override
+	public int delete(Board b) {
+		int n = dao.delete(b);
+		return n;
+	}
+
+	@Override
+	public ArrayList<Board> selectProduct(String category, String item) {
+		HashMap<String, String> map = new HashMap<>();
+		if(!category.equals("all"))
+			map.put("category", category);
+		map.put("item", item);
+		
+		ArrayList<Board> list = dao.selectProduct(map);
+		return list;
+	}
+
+	@Override
+	public int buyProduct(Board b) {
+		int n = dao.buyProduct(b);
+		return n;
+	}
+
+	@Override
+	public int insertReply(Reply r) {
+		int n = dao.insertReply(r);
+		return n;
+	}
+
+	@Override
+	public ArrayList<Reply> getAllReply(int boardnum) {
+		ArrayList<Reply> list = dao.getAllReply(boardnum);
+		return list;
+	}
+
+	@Override
+	public int deleteReply(Reply r) {
+		int n = dao.deleteReply(r);
+		return n;
+	}
 
 
 }

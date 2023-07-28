@@ -14,4 +14,14 @@
 	select count(*) from market_member where memberid = #{id}
 </select>
 
+<!-- 1명의 회원정보 조회 -->
+<select id="selectOne" parameterType="string" resultType="Member">
+	select * from market_member where memberid = #{memberid}
+</select>
+
+<!-- 개인정보 수정 -->
+<update id="updateMember" parameterType="Member">
+	update market_member set phone = #{phone} where memberid = #{memberid}
+</update>
+
 </mapper>
