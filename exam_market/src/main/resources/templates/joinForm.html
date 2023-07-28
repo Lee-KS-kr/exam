@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>join</title>
-
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
 <script>
 $("#memberid").keyup(function () {
 	idCheck();
+	check();
 });
 
 function idCheck(){
@@ -17,10 +18,10 @@ function idCheck(){
 	    url: "idCheck",
 	    type: "post",
 	    data: {id : memberid},
-	    data : text,
+	    dataType : "text",
 	    success:function(data){
 	        if(data > 0){ 
-	        	alert("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
+	        	$('#idspan').html("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
 	        } else {
 	        	$('#idspan').html("사용가능한 아이디입니다");
 	            idChk=1;
@@ -40,7 +41,7 @@ function check() {
 	let phone = document.getElementById('phone');
 	
 	if(memberid.value.length < 3 || memberid.value.length > 10){
-		alert("id는 3~10자로 입력하세요.");
+		$('#idspan').html("id는 3~10자로 입력하세요.");
 		return false;
 	}
 
@@ -73,7 +74,7 @@ function check() {
 <br>
 
 	<div class="form">
-    <form th:action="@{/member/join}" method="post" class="form2" onsubmit="return check()" >
+    <form th:action="@{/member/join}" method="post" onsubmit="return check()">
         <table>
             <tr>
                 <th>ID</th>
@@ -84,7 +85,7 @@ function check() {
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="password" name="memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"><br></td>
+                <td><input type="password" name="memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"></td>
             </tr>
             <tr>
                 <th>이름</th>
@@ -96,9 +97,8 @@ function check() {
             </tr>
         </table>
         <div class="bt">
-                 <input type="submit" value="가입" class="bt1">
-                 <input type="reset" value="다시쓰기" class="bt1">
-
+            <input type="submit" value="가입" class="bt1">
+            <input type="reset" value="다시쓰기" class="bt1">
         </div>
         </form>
 	</div>        
