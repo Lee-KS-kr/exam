@@ -19,6 +19,7 @@ $(document).ready(function(){
 
 function init(){
 	let boardnum = $('#boardnum').val();
+	let replynum = $('#replynum').val();
 	$.ajax({
 		url: "replylist",
 		type: "get",
@@ -31,6 +32,7 @@ function init(){
 				str += '<td>' + item.memberid + '</td>';
 				str += '<td>' + item.replytext + '</td>';
 				str += '<td>' + item.inputdate + '</td>';
+				str += `<td><a href="|javascript:deleteReply(item.replynum,item.boardnum)|">x</a></td>`;
 				str += '</tr>';
 			});
 			str += '</table>';
@@ -78,6 +80,27 @@ function buyBoard(boardnum){
 	let result = confirm("구매하시겠습니까?");
 	if(result == true){
 		location.href="buy?boardnum="+boardnum;
+	}
+}
+
+function deleteReply(replynum, boardnum) {
+	let result = confirm("삭제하시겠습니까?");
+	if(result == true){
+		let boardnum = $('#boardnum').val();
+		let replynum = $('#replynum').val();
+		
+		$.ajax({
+			url: 'deleteReply',
+			type: 'post',
+			data: { replynum: replynum, boardnum: boardnum },
+			success: function(){
+				alert('댓글이 삭제되었습니다.');
+				init();
+			},
+			error: function(e){
+				alert(e.statusText);
+			}
+		});
 	}
 }
 	
