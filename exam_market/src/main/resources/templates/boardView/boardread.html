@@ -39,7 +39,7 @@ function init(){
 			$('#replylist').html(str);
 		},
 		error: function(){
-			alert('댓글을 삭제할 수 없습니다.');
+			
 		}
 	});
 }
@@ -94,12 +94,18 @@ function deleteReply(replynum, boardnum) {
 			url: 'deleteReply',
 			type: 'post',
 			data: { replynum: replynum, boardnum: boardnum },
-			success: function(){
-				alert('댓글이 삭제되었습니다.');
-				init();
+			dataType: "text",
+			success: function(delCnt){
+				if(delCnt == '1'){
+					alert('댓글이 삭제되었습니다.');
+					init();
+				}
+				else{
+					alert('댓글 삭제를 실패했습니다.');
+				}
 			},
-			error: function(e){
-				alert(e.statusText);
+			error: function(){
+				alert('댓글을 삭제할 수 없습니다.');
 			}
 		});
 	}
