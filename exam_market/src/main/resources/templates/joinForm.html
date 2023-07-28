@@ -5,13 +5,14 @@
 <title>join</title>
 
 <script>
-function check() {
-	let memberid = document.getElementById('memberid');
-	let memberpw = document.getElementById('memberpw');
-	let membername = document.getElementById('membername');
-	let phone = document.getElementById('phone');
-	let idChk = 0;
+$("#memberid").keyup(function () {
+	idCheck();
+});
 
+function idCheck(){
+	let memberid = document.getElementById('memberid');
+	let idChk = 0;
+	
 	$.ajax({
 	    url: "idCheck",
 	    type: "post",
@@ -21,14 +22,22 @@ function check() {
 	        if(data > 0){ 
 	        	alert("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
 	        } else {
-	        	alert("사용가능한 아이디입니다");
-	             idChk=1;
+	        	$('#idspan').html("사용가능한 아이디입니다");
+	            idChk=1;
 	        }
 	    },
 	    error:function(error){
 	        alert("아이디를 다시 입력해 주세요");
 	    }
 	});
+	
+}
+
+function check() {
+	let memberid = document.getElementById('memberid');
+	let memberpw = document.getElementById('memberpw');
+	let membername = document.getElementById('membername');
+	let phone = document.getElementById('phone');
 	
 	if(memberid.value.length < 3 || memberid.value.length > 10){
 		alert("id는 3~10자로 입력하세요.");
@@ -68,7 +77,10 @@ function check() {
         <table>
             <tr>
                 <th>ID</th>
-                <td><input type="text" name="memberid" id="memberid" placeholder="아이디를 입력해주세요"></td>
+                <td>
+                	<input type="text" name="memberid" id="memberid" placeholder="아이디를 입력해주세요">
+                	<span id="idspan"></span>
+               	</td>
             </tr>
             <tr>
                 <th>비밀번호</th>
