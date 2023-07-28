@@ -90,10 +90,12 @@
 		, memberid
 		, replytext
 		, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate 
-	from
+	from 
 		market_reply
 	where 
 		boardnum = #{boardnum}
+	order by
+		replynum desc
 </select>
 
 <!-- 6-3) 판매글 리플삭제 -->
