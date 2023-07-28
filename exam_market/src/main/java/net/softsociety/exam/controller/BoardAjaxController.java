@@ -36,6 +36,7 @@ public class BoardAjaxController {
 	@PostMapping("search")
 	public ArrayList<Board> search(String category, String item){
 		ArrayList<Board> list = service.selectProduct(category, item);
+		log.debug("{}", list);
 		return list;
 	}
 	
@@ -49,5 +50,11 @@ public class BoardAjaxController {
 	public void writeReply(@AuthenticationPrincipal UserDetails user, Reply r) {
 		r.setMemberid(user.getUsername());
 		service.insertReply(r);
+	}
+	
+	@PostMapping("deleteReply")
+	public void deleteReply(@AuthenticationPrincipal UserDetails user, Reply r) {
+		r.setMemberid(user.getUsername());
+		service.deleteReply(r);
 	}
 }

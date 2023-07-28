@@ -3,8 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>join</title>
-
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
 <script>
+$("#memberid").keyup(function () {
+	idCheck();
+});
+
+function idCheck(){
+	let memberid = document.getElementById('memberid').value;
+
+	$.ajax({
+	    url: "idCheck",
+	    type: "post",
+	    data: {id : memberid},
+	    dataType : "text",
+	    success:function(data){
+	        if(data > 0){ 
+	        	$('#idspan').html("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
+	        } else {
+	        	$('#idspan').html("사용가능한 아이디입니다");
+	        }
+	    },
+	    error:function(error){
+	        alert("아이디를 다시 입력해 주세요");
+	    }
+	});
+	
+}
+
 function check() {
 	let memberid = document.getElementById('memberid');
 	let memberpw = document.getElementById('memberpw');
@@ -14,7 +40,7 @@ function check() {
 	if(memberid.value.length < 3 || memberid.value.length > 10){
 		alert("id는 3~10자로 입력하세요.");
 		return false;
-	}	
+	}
 
 	if(memberpw.value.length < 3 || memberpw.value.length > 10){
 		alert("pw는 3~10자로 입력하세요.");
@@ -45,19 +71,22 @@ function check() {
 <br>
 
 	<div class="form">
-    <form th:action="@{/member/join}" method="post" class="form2" onsubmit="return check()" >
+    <form th:action="@{/member/join}" method="post" onsubmit="return check()">
         <table>
             <tr>
                 <th>ID</th>
-                <td><input type="text" name="memberid" id="memberid" placeholder="아이디를 입력해주세요"></td>
+                <td>
+                	<input type="text" name="memberid" id="memberid" placeholder="아이디를 입력해주세요">
+                	<span id="idspan"></span>
+               	</td>
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="password" name="memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"><br></td>
+                <td><input type="password" name="memberpw" id="memberpw" placeholder="비밀번호를 입력해주세요"></td>
             </tr>
             <tr>
                 <th>이름</th>
-                <td><input type="text" name="membername" id="membername" placeholder="전화번호를 입력해주세요"></td>
+                <td><input type="text" name="membername" id="membername" placeholder="이름을 입력해주세요"></td>
             </tr>
             <tr>
                 <th>전화번호</th>
@@ -65,9 +94,8 @@ function check() {
             </tr>
         </table>
         <div class="bt">
-                 <input type="submit" value="가입" class="bt1">
-                 <input type="reset" value="다시쓰기" class="bt1">
-
+            <input type="submit" value="가입" class="bt1">
+            <input type="reset" value="다시쓰기" class="bt1">
         </div>
         </form>
 	</div>        
