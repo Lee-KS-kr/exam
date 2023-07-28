@@ -30,4 +30,6 @@ public interface BoardDAO {
 
 	ArrayList<Reply> getAllReply(int boardnum);
 
+	int deleteReply(Reply r);
+
 }
