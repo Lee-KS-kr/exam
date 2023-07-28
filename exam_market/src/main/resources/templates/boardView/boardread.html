@@ -45,7 +45,7 @@ function formSubmit(){
 	let replytext = $('#replytext').val();
 	let boardnum = $('#boardnum').val();
 	
-	if(replytext.length <= 0 ){
+	if(replytext <= 0 ){
 		alert('댓글을 입력해주세요.');
 		return false;
 	}
