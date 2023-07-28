@@ -59,7 +59,8 @@ public class MemberController {
 	
 	@PostMapping("update")
 	public String editProfile(@AuthenticationPrincipal UserDetails user, Member m) {
-		m.setMembername(user.getUsername());
+		m.setMemberid(user.getUsername());
+		log.debug("변경할 내용 : {}", m);
 		service.updateMember(m);
 		
 		return "redirect:/member/mypage";
