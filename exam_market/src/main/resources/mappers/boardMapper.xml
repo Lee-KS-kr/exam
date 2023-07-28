@@ -94,6 +94,8 @@
 		market_reply
 	where 
 		boardnum = #{boardnum}
+	order by
+		replynum desc
 </select>
 
 <!-- 6-3) 판매글 리플삭제 -->
