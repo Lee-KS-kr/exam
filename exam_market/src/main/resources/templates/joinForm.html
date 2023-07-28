@@ -10,14 +10,30 @@ function check() {
 	let memberpw = document.getElementById('memberpw');
 	let membername = document.getElementById('membername');
 	let phone = document.getElementById('phone');
-	let searchid;
+	let idChk = 0;
+
+	$.ajax({
+	    url: "idCheck",
+	    type: "post",
+	    data: memberid,
+		dataType : "json",
+	    success:function(data){
+	        if(data.cnt > 0){ 
+	        	alert("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
+	        } else {
+	        	alert("사용가능한 아이디입니다");
+	             idChk=1;
+	        }
+	    },
+	    error:function(error){
+	        alert("아이디를 다시 입력해 주세요");
+	    }
+	});
 	
 	if(memberid.value.length < 3 || memberid.value.length > 10){
 		alert("id는 3~10자로 입력하세요.");
 		return false;
 	}
-	
-	if(memberid.value == )
 
 	if(memberpw.value.length < 3 || memberpw.value.length > 10){
 		alert("pw는 3~10자로 입력하세요.");
@@ -32,20 +48,6 @@ function check() {
 		return false;
 	}
 	return true;
-}
-
-function check2(){
-	$.ajax({
-		url: 'insert2',
-		type: 'get',
-		dataType: "text",
-		success: function(){
-			
-		},
-		error: function(e){
-			alert(e.statusText); //결과: error (에러메세지)
-		}
-	});
 }
 </script>
 
