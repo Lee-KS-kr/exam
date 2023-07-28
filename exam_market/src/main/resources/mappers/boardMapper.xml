@@ -134,7 +134,7 @@
             and category = #{category}
         </if>
         <if test="item != null and item != ''">
-            and (title like '%' || #{item} || '%' or contents like '%' || #{item} || '%')
+            and (upper(title) like '%' || upper(#{item}) || '%' or upper(contents) like '%' || upper(#{item}) || '%')
         </if>
     order by
         boardnum desc
